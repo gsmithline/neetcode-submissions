@@ -1,0 +1,18 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        holder = {} #key is value, index is value
+        longest, upper, lower = 0, 0, 0
+
+        for i in range(0, len(s)):
+
+            if s[i] in holder and holder[s[i]] >= lower:
+                lower = holder[s[i]] + 1
+                holder[s[i]] = 1
+            
+            holder[s[i]] = i
+            longest = max(longest, i + 1 - lower)
+
+        
+        return longest
+                
+        
